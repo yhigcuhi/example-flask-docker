@@ -4,7 +4,7 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 """
- エントリーポイント
+ エントリーポイント TODO:ヘルスチェック用にする
 """
 @app.route('/')
 def index():

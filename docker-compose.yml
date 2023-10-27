@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 
 services:
   # flaskのpython環境
@@ -12,8 +12,26 @@ services:
     # マウント
     volumes:
       - ./app:/usr/src/app
-    # 利用ポート
+    # PORT = for flask
     ports:
       - ${WEB_PORT}:5000
     # flask起動させる 「--debugger --reload」でのホットリロード(開発用)
     command: flask run --host=0.0.0.0 --debugger --reload
+  # フロントエンド(別サーバーで管理 前提)
+  front:
+    # 管理コンテナ名
+    container_name: ${APP_NAME}-front
+    # Dockerファイルにて定義
+    build:
+        context: .
+        dockerfile: ./docker/vite/Dockerfile
+    # 場所
+    volumes:
+      - ./front/:/var/www/html
+    # PORT = for watch
+    ports:
+      - ${FRONT_PORT:-3000}:5173
+    # ホットリロード(開発用)で起動
+    command: yarn run dev
+    # コンテナを正常終了するのを防ぐ
+    tty: true
