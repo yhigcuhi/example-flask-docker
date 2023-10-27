@@ -5,10 +5,13 @@ Python Flask + Docker 環境のお試し
 localhost:3000 (react viteで作成したページ) アップロード → localhost:5001/api/v1/simulate/eyelid → localhost:3000 反応 → localhost:3000/complete 画面 
 
 ## setup
-+ .env.exampleの内容を参考に .env用意 (面倒なら cp .env.example .env でオケ)
-+ docker compose build
-+ docker compose up -d
-+ localhost:5001、localhost:3000(.envの内容によりけり)で画面出たら完了
+1. .env.exampleの内容を参考に .env用意 (面倒なら cp .env.example .env でオケ)
+1. docker compose build
+1. docker compose up -d
+1. docker compose run --rm front yarn install
+1. docker compose down
+1. docker compose up -d
+1. localhost:5001、localhost:3000(.envの内容によりけり)で画面出たら完了
 
 ## 参考
 - [Docker Flask 構築](https://zenn.dev/tatausuru/articles/35e123034b98ba)

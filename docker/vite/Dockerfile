@@ -2,6 +2,8 @@
 FROM node:18-bullseye-slim
 # コンテナ内の作業ディレクトリを作成
 WORKDIR /var/www/html
+COPY ../../front ./
+
 # パッケージ一覧(インデックス)を更新
 RUN apt update \
     && yarn install
