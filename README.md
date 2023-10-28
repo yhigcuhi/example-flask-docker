@@ -2,7 +2,7 @@
 Python Flask + Docker 環境のお試し
 
 ## ゴール
-localhost:3000 (react viteで作成したページ) アップロード → localhost:5001/api/v1/simulate/eyelid → localhost:3000 反応 → localhost:3000/complete 画面 
+localhost:3000 (react viteで作成したページ) アップロード → localhost:5001/api/v1/upload → localhost:3000 反応 → localhost:3000/complete 画面 
 
 ## setup
 1. .env.exampleの内容を参考に .env用意 (面倒なら cp .env.example .env でオケ)
@@ -15,6 +15,7 @@ localhost:3000 (react viteで作成したページ) アップロード → local
 
 ## 参考
 - [Docker Flask 構築](https://zenn.dev/tatausuru/articles/35e123034b98ba)
+- [Flask LaravelのMVCぽくしたの参考](https://michi-programming.hatenablog.com/entry/2022/11/07/200000)
 
 ## 初回構築時の作業内容(setupじゃないのですまん メモ)
 ### flask

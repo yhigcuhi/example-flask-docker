@@ -1,16 +1,23 @@
 /* import react */
 import {useRef, useState} from 'react';
 /* import 部品 */
-import {Button} from '../components';
+import {Button} from '../../components/index.jsx';
 import viteLogo from '/vite.svg'
+/* import hooks */
+import {useFileUpload} from './hooks/useFileUpload.js'
 
+/**
+ * @returns {JSX.Element} ファイルアップロードフォーム画面
+ */
 export default function Form() {
     // input fileへの ref
     const fileRef = useRef();
-    // アップロードする ファイル名
+    // 選択された ファイル名
     const [fileName, setFileName] = useState();
-    // アップロードする画像
+    // 選択された画像
     const [imageFile, setImageFile] = useState(viteLogo);
+    // ファイルアップロード
+    const {upload} = useFileUpload();
 
     /* イベントハンドラー*/
     // ファイルアップロードクリック
@@ -19,7 +26,7 @@ export default function Form() {
      * ファイル変更
      * @param {React.ChangeEvent<HTMLInputElement>} event
      */
-    const onChangeFile = (event) => {
+    const onChangeFile = async (event) => {
         // 設定されたファイル取得
         const files = event.currentTarget.files;
         // ファイルがなければ終了
@@ -28,10 +35,12 @@ export default function Form() {
         const file = files[0];
         // ファイル名変更
         setFileName(file.name);
-        // 画像ファイル変更
+        // 選択 画像ファイル変更
         setImageFile(window.URL.createObjectURL(file));
 
-        // TODO:次 flaskへファイルアップロード...
+        // ファイルアップロード
+        const response = await upload(file)
+        console.log('response...', response)
     }
     // 画面描画
     return (

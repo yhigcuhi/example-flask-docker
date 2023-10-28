@@ -1,4 +1,4 @@
-import Form from './Form.jsx';
+import Form from './upload/Form.jsx';
 export {
     Form,
 }
