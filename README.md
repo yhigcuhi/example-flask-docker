@@ -13,9 +13,20 @@ localhost:3000 (react viteで作成したページ) アップロード → local
 1. docker compose up -d
 1. localhost:5001、localhost:3000(.envの内容によりけり)で画面出たら完了
 
+※ flask 側はよく分からんが docker compose exec flask ashで入れる
+
 ## 参考
 - [Docker Flask 構築](https://zenn.dev/tatausuru/articles/35e123034b98ba)
 - [Flask LaravelのMVCぽくしたの参考](https://michi-programming.hatenablog.com/entry/2022/11/07/200000)
+- [Flask CORS導入の参考](https://memorandom.whitepenguins.com/posts/flask-cors/)
+- [PyCharm pythonインタプリタ(ライブラリ読み込みとかの設定)](https://pleiades.io/help/pycharm/using-docker-compose-as-a-remote-interpreter.html#docker-compose-remote)
+- [Python デコレーター関数](https://www.yoheim.net/blog.php?q=20160607)
+- [Flask requestを利用したデコレーター関数](https://qiita.com/5zm/items/c3f004291a87cdbce0b9)
+- [Python .env環境設定ファイル読み込み](https://zenn.dev/nakashi94/articles/9c93b6a58acdb4)
+
+## pip install 結果を requirements.txtに記載 ... 自動更新ではない
+ライブラリ追加後...
+pip freeze で 現在の一覧を見て、追加されたライブラリを requirements.txtに追加
 
 ## 初回構築時の作業内容(setupじゃないのですまん メモ)
 ### flask

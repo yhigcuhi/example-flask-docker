@@ -12,6 +12,7 @@ services:
     # マウント
     volumes:
       - ./app:/usr/src/app
+      - ./docker/python/.env.dev:/usr/src/app/.env
     # PORT = for flask
     ports:
       - ${WEB_PORT}:5000
@@ -27,7 +28,8 @@ services:
         dockerfile: ./docker/vite/Dockerfile
     # 場所
     volumes:
-      - ./front/:/var/www/html
+      - ./front:/var/www/html
+      - ./docker/vite/.env.dev:/var/www/html/.env
     # PORT = for watch
     ports:
       - ${FRONT_PORT:-3000}:5173
