@@ -11,7 +11,7 @@ import logging
 from auth.auth_key import api_key
 # 環境設定ファイル読み込み用
 from dotenv import load_dotenv
-import os
+import os, subprocess
 # 画像→base64用
 import base64
 
@@ -28,6 +28,9 @@ app.logger.setLevel(logging.DEBUG)
 log_handler = logging.FileHandler('logs/DEBUG.log')
 log_handler.setLevel(logging.DEBUG)
 app.logger.addHandler(log_handler)
+# SSHホスト
+SSH_HOST = os.environ['SSH_HOST']
+KICK_COMMAND = os.environ['KICK_COMMAND']
 
 """ ルーティング定義 """
 # TODO:上の外だしで ルーティング定義もやりたい まぁ特にないから別にいいが
@@ -49,6 +52,9 @@ def upload():
     file = request.files['image'] # name="image" の画像ファイル取得
     # 画像ファイル読み込み → base64文字列
     base64_image_str = base64.b64encode(file.read()).decode('utf-8')
+    # スクリプト実行
+    proc = subprocess.run([f'ssh {SSH_HOST} ' f'{KICK_COMMAND}', '-m'], shell=True)
+    app.logger.debug(proc.returncode)
     # TODO:ファイルローカルセーブ → s3アップロードかな...
     return jsonify({
         'data': {

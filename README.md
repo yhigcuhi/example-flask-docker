@@ -12,6 +12,7 @@ localhost:3000 (react viteで作成したページ) アップロード → local
 1. docker compose down
 1. docker compose up -d
 1. localhost:5001、localhost:3000(.envの内容によりけり)で画面出たら完了
+1. flaskのコンテナで SSH接続しておく(known_hosts作っておく)
 
 ※ flask 側はよく分からんが docker compose exec flask ashで入れる
 

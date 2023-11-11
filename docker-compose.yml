@@ -52,6 +52,7 @@ services:
     # マウント
     volumes:
       - ./ssh:/root/.ssh
+      - ./script:/root/test
     # root実行の権限許可
     privileged: true
     command: /sbin/init
