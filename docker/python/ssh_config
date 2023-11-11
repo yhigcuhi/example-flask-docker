@@ -1,0 +1,5 @@
+Host docker_ssh_server
+  HostName ssh_server
+  IdentityFile ~/.ssh/docker_ssh_id_rsa
+  User root
+  Port 20022

@@ -13,6 +13,8 @@ services:
     volumes:
       - ./app:/usr/src/app
       - ./docker/python/.env.dev:/usr/src/app/.env
+      - ./ssh/docker_ssh_id_rsa:/root/.ssh/docker_ssh_id_rsa
+      - ./docker/python/ssh_config:/root/.ssh/config
     # PORT = for flask
     ports:
       - ${WEB_PORT}:5000
@@ -37,3 +39,22 @@ services:
     command: yarn run dev
     # コンテナを正常終了するのを防ぐ
     tty: true
+  # SSH接続先用
+  ssh_server:
+    # 管理コンテナ名
+    container_name: ${APP_NAME}-ssh
+    # host名
+    hostname: ssh_server
+    # Dockerファイルにて定義
+    build:
+        context: .
+        dockerfile: ./docker/ssh_server/Dockerfile
+    # マウント
+    volumes:
+      - ./ssh:/root/.ssh
+    # root実行の権限許可
+    privileged: true
+    command: /sbin/init
+    # 利用ポート: カスタムSSH固定(ホスト側は特に使っていないから一緒にしているだけ)
+    ports:
+      - "20022:20022"

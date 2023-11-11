@@ -23,6 +23,7 @@ localhost:3000 (react viteで作成したページ) アップロード → local
 - [Python デコレーター関数](https://www.yoheim.net/blog.php?q=20160607)
 - [Flask requestを利用したデコレーター関数](https://qiita.com/5zm/items/c3f004291a87cdbce0b9)
 - [Python .env環境設定ファイル読み込み](https://zenn.dev/nakashi94/articles/9c93b6a58acdb4)
+- [Docker コンテナ間 SSH通信](https://qiita.com/kuboshu83/items/f827ad7068550cded72d)
 
 ## pip install 結果を requirements.txtに記載 ... 自動更新ではない
 ライブラリ追加後...
@@ -58,3 +59,9 @@ def index():
 1. curl https://www.toptal.com/developers/gitignore/api/vim,linux,macos,react,node,windows,intellij,sublimetext,visualstudio,visualstudiocode >> .gitignore
 1. cd ../
 1. docker compose run --rm front yarn install && yarn build
+
+### ssh_serverの構築
+1. ssh_serverを起動し cd ~/.ssh/移動
+2. ssh-keygenで、id_rsaとかの準備(パスフレーズなし)、実行権限とかも [参考](https://zenn.dev/akhmgc/articles/52c90fe6100eaf)
+3. 「ホスト側にある公開鍵をイメージ側に登録します」 をDockerFileとして追加（マウントしているし、いらなくなるかな）
+4. docker compose ymlとして hostname固定し docker/python/ssh_config作成

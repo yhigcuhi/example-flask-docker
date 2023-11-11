@@ -1,6 +1,11 @@
 # python3での構築
 FROM python:3.9-alpine
 
+# OSインストール
+RUN apk update && \
+    apk add  \
+    openssh-client
+
 # 作業ディレクトリ
 WORKDIR /usr/src/app
 # 作業ディレクトリに依存パッケージ一覧配置
