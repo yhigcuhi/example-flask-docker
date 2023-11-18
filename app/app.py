@@ -14,6 +14,7 @@ from dotenv import load_dotenv
 import os, subprocess
 # 画像→base64用
 import base64
+from service.redis_fifo import make_key, execute
 
 # .envファイル読み込み
 load_dotenv()
@@ -41,6 +42,14 @@ KICK_COMMAND = os.environ['KICK_COMMAND']
 def index():
     # templates/xxx.htmlの画面表示しろ、bind 変数渡して (テンプレート側のhtml変えてもリロードされないの注意...なんかないの)
     return render_template('index.html')
+
+"""
+キュー型 待ち行列のテスト用
+"""
+@app.route('/queue')
+def test_queue():
+    key = make_key()
+    return execute(key)
 
 """
 ファイルアップロード お試し
